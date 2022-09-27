@@ -2,6 +2,12 @@ function lowestPricesInCities(data) {
     let res = {};
 
     for(let el of data) {
+
+        //instead of writing:
+        //let values = el.split(' | ');
+        //let town = values[0];
+        //let product = values[1];
+        //let price = Number(values[2]);
         let [town, product, price] = el.split(' | ');
         price = Number(price);
 
