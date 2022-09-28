@@ -1,12 +1,21 @@
-function extract(content) {
-    let contentElement = document.getElementById(content);
+function extract(elementId) {
+    //first get the element from the html document
+    let elementText = document.getElementById(elementId).textContent;
 
-    let pattern = /\(([^(]+)\)/g;
-    let matches = contentElement.textContent.matchAll(pattern);
+    let pattern = /\(([^)]+)\)/g;
+
     let result = [];
-    for (const match of matches) {
-        result.push(match[1])
-    }
 
+    let matches = elementText.matchAll(pattern);
+
+    for(let match of matches) {
+      result.push(match[1]);
+    }
+  
     return result.join('; ');
 }
+
+let result = extract('content');
+
+console.log(result);
+
