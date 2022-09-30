@@ -13,7 +13,9 @@ function attachGradientEvents() {
         resultElement.textContent = `${percent}%`;
     }
 
-    function gradientOut(event) {
+    //here since we don't need the event info, we can leave the function with no arguments
+    //gradientOut()
+    function gradientOut() {
         resultElement.textContent = '';
     }
 
