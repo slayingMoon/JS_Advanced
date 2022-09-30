@@ -8,6 +8,7 @@ function deleteByEmail() {
 
     let emailElementsArray = Array.from(emailElements);
     //targetEmailElement is <td>emailValue</td>
+    //innerText vs textContent -> innerText ignores white spaces
     let targetEmailElement = emailElementsArray.find(td => td.textContent == emailInput);
     
     //<td>emailValue</td>

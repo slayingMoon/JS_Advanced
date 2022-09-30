@@ -6,11 +6,11 @@ function addItem() {
 
     //creating the new item and assigning value to it
     let liElement = document.createElement('li');
-    liElement.textContent = inputText.value;
+    liElement.textContent = inputElememt.value;
 
     //adding the new item to the list
     itemsList.appendChild(liElement);
 
     //clearing input
-    inputText.value = '';
+    inputElememt.value = '';
 }
