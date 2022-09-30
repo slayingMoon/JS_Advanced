@@ -1,0 +1,20 @@
+# is for id
+. is for class
+-difference between element and node:
+->element is just <div></div>- every tag element
+->node is <div> + text - the tag elements + the text between them, empty space is also considered part of the node!!!
+
+-difference between button.addEventListener('click', onClick) and button.addEventListener('click', onClick())
+-> in first case we call the function on click, in the second, we call the function inside the eventListener,
+therefore we break the functionality and the function is called every time the page loads and NOT on click!!!
+
+-how to remove event listener?
+-> button.removeEventListener('click', onClick);
+
+-'mousemove' eventlistener -> example: window.addEventListener('mousemove', onMouseMove);
+->triggers the event each time the mouse is moved. (millenium/nexo probably use this event listener for their home page).
+
+-difference between target and currentTarget:
+-> *target is the element that triggered the event (e.g., the user clicked on) (елемента, който тригерира дадения event)
+   *currentTarget is the element that the event listener is attached to. (елемента в/у който event-a е закачен)
+->Спестява ни това да закачаме event на всеки бутон, като можем да закачим само на техния parent.
