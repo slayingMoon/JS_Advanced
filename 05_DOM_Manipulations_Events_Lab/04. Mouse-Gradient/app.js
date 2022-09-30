@@ -4,6 +4,8 @@ function attachGradientEvents() {
 
     function gradientMouseoverHandler(event) {
         let position = event.offsetX;
+        //has to be 'event.target.clientWidth - 1' instead of offsetWidth
+        //otherwise Unexpected error: Gradient was not detected.: expected 'NaN%' to equal '16%'
         let gradientWidth = event.target.clientWidth - 1;
 
         let percent = Math.floor((position / gradientWidth) * 100);
