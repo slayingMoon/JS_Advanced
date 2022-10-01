@@ -11,7 +11,15 @@ function create(words) {
    }
 
    function showP(event) {
-      // event.target.firstChild.style.display = 'block'; -- another option to get child
+
+      //if element is paragraph, then do nothing, otherwise we get an error in the console
+      if(event.target.nodeName === 'P') {
+         return
+      }
       event.target.children[0].style.display = 'block';
+
+      //event.target.firstChild.style.display = 'block'; -- another option to get child
+      //let p = event.target.children[0];
+      //p.style.display = 'block';
    }
 }
