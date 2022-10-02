@@ -6,12 +6,11 @@ function encodeAndDecodeMessages() {
     encode.addEventListener('click', encodeMessage);
     decode.addEventListener('click', decodeMessage);
 
-    let textAreas = document.getElementsByTagName('textarea');
-    let input = textAreas[0];
-    let output = textAreas[1];
-
-    function encodeMessage() {
-        let message = input.value;
+    function encodeMessage(e) {
+        let textAreas = e.target.parentElement.parentElement.querySelectorAll('textarea');
+        let inputField = textAreas[0];
+        let outputField = textAreas[1];
+        let message = inputField.value;
         let encoded = '';
 
         for(let i = 0; i < message.length; i++) {
@@ -20,13 +19,15 @@ function encodeAndDecodeMessages() {
         }
 
         //clear input field of any text
-        input.value = '';
+        inputField.value = '';
         //send the message to the output/decode area
-        output.value = encoded;
+        outputField.value = encoded;
     }
 
-    function decodeMessage() {
-        let encodedMessage = output.value;
+    function decodeMessage(e) {
+        let textAreas = e.target.parentElement.parentElement.querySelectorAll('textarea');
+        let outputField = textAreas[1];
+        let encodedMessage = outputField.value;
         let decoded = '';
         for(let i = 0; i < encodedMessage.length; i++) {
             let currSymbol = encodedMessage.charCodeAt(i);
@@ -34,6 +35,6 @@ function encodeAndDecodeMessages() {
         }
 
         //overwrite the encoded message with the decoded
-        output.value = decoded;
+        outputField.value = decoded;
     }
 }
