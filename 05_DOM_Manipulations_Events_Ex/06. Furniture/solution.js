@@ -49,7 +49,7 @@ function solve() {
       //at the end just append the whole row to the table
       table.appendChild(tRow);
     });
-    
+
   }
 
   let checkedItems = [];
@@ -62,8 +62,8 @@ function solve() {
     let tableRows = Array.from(document.querySelectorAll('tbody tr'));
 
     let isChecked = false;
-    for(let i = 1; i < tableRows.length; i++) {
-      if(tableRows[i].querySelector('input[type=checkbox]').checked) {
+    for (let i = 1; i < tableRows.length; i++) {
+      if (tableRows[i].querySelector('input[type=checkbox]').checked) {
         checkedItems.push(tableRows[i].children[1].textContent);
         totalPrice += Number(tableRows[i].children[2].textContent);
         decorationFactor += Number(tableRows[i].children[3].textContent);
@@ -71,10 +71,8 @@ function solve() {
       }
     }
 
-    if(isChecked) {
-      output.value += `Bought furniture: ${checkedItems.join(', ')}\n`;
-      output.value += `Total price: ${totalPrice.toFixed(2)}\n`;
-      output.value += `Average decoration factor: ${decorationFactor / checkedItems.length}`;
+    if (isChecked) {
+      output.value = `Bought furniture: ${checkedItems.join(', ')}\nTotal price: ${totalPrice.toFixed(2)}\nAverage decoration factor: ${decorationFactor / checkedItems.length}`
     }
 
   }
