@@ -18,3 +18,57 @@ therefore we break the functionality and the function is called every time the p
 -> *target is the element that triggered the event (e.g., the user clicked on) (елемента, който тригерира дадения event)
    *currentTarget is the element that the event listener is attached to. (елемента в/у който event-a е закачен)
 ->Спестява ни това да закачаме event на всеки бутон, като можем да закачим само на техния parent.
+
+------------------------------------------------------------------------------------------------
+
+-what is hoisting/raising in JS?
+-> if we call a function before declaring it in the context ot our environment:
+myFunc();
+
+function myFunc() {
+}
+
+=> this works, thanks to the hoisting, which automatically brings the declaration at the top
+
+-> however the same rules do not apply if we assign the function to a variable like this:
+func();
+
+let func = function myFunc() {
+};
+->the rules of the variables are applied in this case
+-> only var, function declaration have hoisting
+------------------------------------------------------------------------------------------------
+-execution context
+1. let lives inside the curly brackets and cannot be accessed before init
+2. function declaration can be executed in the current function scope
+3. function has access to the outer function scope but not the inner one
+4. Arrow functions do not have their own this. They use this from their outer function
+5. Content of 'this' = global, object, forced: call, apply, bind
+
+----------------------------------------------------------------------------------------------
+function myFunc(a, b) {  //function declaration
+   return a + b;
+}
+
+let myFunc = function (a, b) {  //function expression
+  return a + b;
+}
+
+let myFunc = (a, b) => a + b; //function expression with lambda
+
+----------------------------------------------------------------------------------------
+-what is call used for?
+-> .call() replaces .this in a given function
+-example: 
+function something() {
+  console.log(this.name);
+}
+
+let obj = {
+  name: 'Sharo'
+};
+
+something();
+
+->calling something will print 'undefined'
+-> but if we use something.call(obj) - we call the something function in the obj context, therefore we get 'Sharo' printed on the console.
