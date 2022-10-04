@@ -72,3 +72,10 @@ something();
 
 ->calling something will print 'undefined'
 -> but if we use something.call(obj) - we call the something function in the obj context, therefore we get 'Sharo' printed on the console.
+
+-------------------------------------------------------------------------------------------
+-sorting rules:
+arr.sort((a,b) => )
+-1. result < 0 => a comes first
+-2. result = 0 => nothing changes
+-3. result > 0 => b comes first
