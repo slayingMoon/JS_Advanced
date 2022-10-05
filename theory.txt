@@ -79,5 +79,3 @@ arr.sort((a,b) => )
 -1. result < 0 => a comes first
 -2. result = 0 => nothing changes
 -3. result > 0 => b comes first
-
-*Sineastra/JS-Advanced
