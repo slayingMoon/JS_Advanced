@@ -4,11 +4,11 @@ function createCard(face, suit) {
     const validSuits = ['S', 'H', 'D', 'C'];
 
     if(validFaces.indexOf(face.toString()) === -1) {
-        throw new Error('Error');
+        throw new Error(`${face} is not a valid face`);
     }
 
     if(validSuits.indexOf(suit) === -1) {
-        throw new Error('Error');
+        throw new Error(`${suit} is not a valid suit`);
     }
 
     switch(suit) {
@@ -29,4 +29,4 @@ function createCard(face, suit) {
     };
 }
 
-console.log(createCard('1', 'C').toString());
+module.exports = { createCard }
