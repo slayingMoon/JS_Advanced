@@ -33,3 +33,184 @@ innerText is defined only for HTMLElement objects, while textContent is defined 
 -why wrap collections in Array.from()?
 -because we get an HTML collection and need to convert this collection to array, in order to use js functions on it
 -> Array.from(document.querySelectorAll('input[type=button]'))
+------------------------------------------------------------------------------------------------
+
+-what is hoisting/raising in JS?
+-> if we call a function before declaring it in the context ot our environment:
+myFunc();
+
+function myFunc() {
+}
+
+=> this works, thanks to the hoisting, which automatically brings the declaration at the top
+
+-> however the same rules do not apply if we assign the function to a variable like this:
+func();
+
+let func = function myFunc() {
+};
+->the rules of the variables are applied in this case
+-> only var, function declaration have hoisting
+------------------------------------------------------------------------------------------------
+-execution context
+1. let lives inside the curly brackets and cannot be accessed before init
+2. function declaration can be executed in the current function scope
+3. function has access to the outer function scope but not the inner one
+4. Arrow functions do not have their own this. They use this from their outer function
+5. Content of 'this' = global, object, forced: call, apply, bind
+
+----------------------------------------------------------------------------------------------
+function myFunc(a, b) {  //function declaration
+   return a + b;
+}
+
+let myFunc = function (a, b) {  //function expression
+  return a + b;
+}
+
+let myFunc = (a, b) => a + b; //function expression with lambda
+
+----------------------------------------------------------------------------------------
+-what is call used for?
+-> .call() replaces .this in a given function
+-example: 
+function something() {
+  console.log(this.name);
+}
+
+let obj = {
+  name: 'Sharo'
+};
+
+something();
+
+->calling something will print 'undefined'
+-> but if we use something.call(obj) - we call the something function in the obj context, therefore we get 'Sharo' printed on the console.
+
+-------------------------------------------------------------------------------------------
+-sorting rules:
+arr.sort((a,b) => )
+-1. result < 0 => a comes first
+-2. result = 0 => nothing changes
+-3. result > 0 => b comes first
+
+-------------------------------------------------------------------------------------------
+-using chai assert
+-> const { assert } = require('chai');
+
+it('should...' () => {
+  assert.equal(actual: number, expected: number, message?: string | undefined) 
+})
+
+-------------------------------------------------------------------------------------------
+How to correctly export, object with functions as properties:
+let mathEnforcer = {
+    addFive: function (num) {
+        if (typeof(num) !== 'number') {
+            return undefined;
+        }
+        return num + 5;
+    },
+    subtractTen: function (num) {
+        if (typeof(num) !== 'number') {
+            return undefined;
+        }
+        return num - 10;
+    },
+    sum: function (num1, num2) {
+        if (typeof(num1) !== 'number' || typeof(num2) !== 'number') {
+            return undefined;
+        }
+        return num1 + num2;
+    }
+};
+
+module.exports = mathEnforcer
+
+-if we use { mathEnforcer } - we encapsulate the object into another object, which is meaningless
+
+=> and in the test file we use: let { addFive, subtractTen, sum } = require('./mathenforcer')
+
+-----------------------------------------------------------------------------------------
+java-streamAPI
+-set Collection to foods collection of object Order
+--orderDTO.getFoods is collection of Strings, and we map each String to Food object, then collect all objects to list
+--and set this list to the order.foods collection
+order.setFoods(orderDTO.getFoods().stream().map(foodRepository::findByName).collect(Collectors.toList()))
+
+-------------------------------------------------------------------------------------------
+-how to extend(copy properties of one object to another in JS):
+let animal = { canEat: true };
+let cat = { name: 'Cat' };
+let extendedCat = Object.assign(cat, animal);
+=> extendedCat = { name: 'Cat', canEat: true }
+let newObj = Object.assign({}, animal);
+=> newObj = { canEat: true };
+
+-------------------------------------------------------------------------------------------
+-what does keyword 'new' do in JS?
+let newCat = new Cat('MyCat');
+
+=> behind the scenes what happens is:
+function Cat(name) {
+//let this = {}; - creates new object
+this.name = name; - attaches given properties
+//return this; - returns the object with the properties attached
+}
+
+=> new way:
+class Cat {
+ constructor(name) {
+    this.name = name;
+ }
+}
+=>In summary: the function was just a constructor for objects
+--------------------------------------------------------------------------------------------
+Unlike functions, hoisting does not apply for classes!
+the functionality is the same as for 'let' defined variables
+--------------------------------------------------------------------------------------------
+-Exporting classes:
+*inside a cat.js file
+class Cat {
+}
+
+module.exports = Cat;
+
+**it is possible to also do the following(inside a animals.js file):
+class Cat {
+}
+
+class Dog {
+}
+
+module.exports = { Cat, Dog };
+---------------------------------------------------------------------------------------------
+*When extending a class, we must call the super class constructor from inside the child's constructor
+class Animal {
+ constructor(canEat) {
+  this.canEat = canEat;
+ }
+}
+
+class Cat extends Animal {
+  constructor(name, age) {
+    super(true); <----- we are required to call the super class constructor with a specific parameter for it's property
+  }
+}
+--------------------------------------------------------------------------------------------
+-correct way to use getters and setters in JS:
+class Cat {
+ constructor(name, age) {
+  this.name = name;
+  this.age = age;
+ }
+
+ get name() {
+  return this._name;  <----- the '_' means, (to a JS developer) that a field is private, but is not private in terms of the language itself.
+ }
+
+ set name(value) {
+  this._name = value;
+ }
+}
+>>>>>>> e6502fecea24b5a79980091f1d02dfa1d522a50b
