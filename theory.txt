@@ -18,3 +18,18 @@ therefore we break the functionality and the function is called every time the p
 -> *target is the element that triggered the event (e.g., the user clicked on) (елемента, който тригерира дадения event)
    *currentTarget is the element that the event listener is attached to. (елемента в/у който event-a е закачен)
 ->Спестява ни това да закачаме event на всеки бутон, като можем да закачим само на техния parent.
+
+-difference between append() and appendChild()
+->append() allows you to add multiple items while appendChild() allows only a single item.
+
+-difference between innerText and textContent
+->The innerText property returns the text, without spacing and the textContent property returns the text along with spacing.
+
+innerText returns the visible text contained in a node, while textContent returns the full text. 
+For example, on the following HTML <span>Hello <span style="display: none;">World</span></span>, innerText will return 'Hello', while textContent will return 'Hello World'.
+As a result, innerText is much more performance-heavy: it requires layout information to return the result.
+innerText is defined only for HTMLElement objects, while textContent is defined for all Node objects.
+
+-why wrap collections in Array.from()?
+-because we get an HTML collection and need to convert this collection to array, in order to use js functions on it
+-> Array.from(document.querySelectorAll('input[type=button]'))
