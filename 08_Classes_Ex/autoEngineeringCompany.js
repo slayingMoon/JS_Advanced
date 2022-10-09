@@ -18,7 +18,7 @@ function solve(arr) {
 
     for(const brand in register) {
         console.log(brand);
-        Object.entries(register[brand]).forEach(el => console.log(`###${el[0]} => ${el[1]}`));
+        Object.entries(register[brand]).forEach(el => console.log(`###${el[0]} -> ${el[1]}`));
     }
 }
 
