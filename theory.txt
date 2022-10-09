@@ -213,3 +213,12 @@ class Cat {
   this._name = value;
  }
 }
+---------------------------------------------------------------------------------------------
+let objInstance = new SomeObj();
+NOTE!! objInstance.name goes through the getter vs objInstance._name calls the property directly
+---------------------------------------------------------------------------------------------
+-TESTING THROWN ERROR
+  it('should throw error if incorrect type for name is set', () => {
+    //IMPORTANT WHEN ASSERTING ERROR THROWN - WE MUST WRAP THE LOGIC INSIDE A FUNCTION!!!!!
+    assert.throws(() => new PaymentPackage(10,10), 'Name must be a non-empty string');
+  })
