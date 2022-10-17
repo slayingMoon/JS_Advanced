@@ -222,3 +222,7 @@ NOTE!! objInstance.name goes through the getter vs objInstance._name calls the p
     //IMPORTANT WHEN ASSERTING ERROR THROWN - WE MUST WRAP THE LOGIC INSIDE A FUNCTION!!!!!
     assert.throws(() => new PaymentPackage(10,10), 'Name must be a non-empty string');
   })
+-----------------------------------------------------------------------------------------
+How to set classes separated by space to a given element?
+let btn = document.createElement('button');
+btn.setAttribute('class', 'action-btn edit');
