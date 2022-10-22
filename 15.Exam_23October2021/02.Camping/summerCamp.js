@@ -62,14 +62,14 @@ class SummerCamp {
             if(p1.power - p2.power > 0) {
                 winner = p1;
             }else if(p1.power - p2.power < 0) {
-                winner = p1;
+                winner = p2;
             }
 
             if(!winner) {
                 return `There is no winner.`;
             }
 
-            this.listOfParticipants.wins += 1;
+            winner.wins += 1;
 
             return `The ${winner.name} is winner in the game ${typeOfGame}.`;
         }else if(typeOfGame === 'Battleship') {
@@ -84,12 +84,21 @@ class SummerCamp {
     }
 
     toString() {
-        
+        let output = `${this.organizer} will take ${this.listOfParticipants.length} participants on camping to ${this.location}\n`;
+        let sortedParticipants = [];
+        sortedParticipants = this.listOfParticipants.sort((a,b) => b.wins - a.wins).map(p => `${p.name} - ${p.condition} - ${p.power} - ${p.wins}`);
+        output += sortedParticipants.join('\n');
+        return output;
     }
 }
 
 const summerCamp = new SummerCamp("Jane Austen", "Pancharevo Sofia 1137, Bulgaria");
-console.log(summerCamp.registerParticipant("Petar Petarson", "student", 200));
 console.log(summerCamp.registerParticipant("Petar Petarson", "student", 300));
-console.log(summerCamp.registerParticipant("Petar Petarson", "student", 300));
-console.log(summerCamp.registerParticipant("Leila Wolfe", "childd", 200));
+// console.log(summerCamp.timeToPlay("Battleship", "Petar Petarson"));
+console.log(summerCamp.registerParticipant("Sara Dickinson", "student", 300));
+console.log(summerCamp.timeToPlay("WaterBalloonFights", "Petar Petarson", "Sara Dickinson"));
+console.log(summerCamp.registerParticipant("Dimitur Kostov", "student", 300));
+console.log(summerCamp.timeToPlay("WaterBalloonFights", "Petar Petarson", "Dimitur Kostov"));
+
+console.log(summerCamp.toString());
+
